@@ -12,11 +12,13 @@
   "license": "ISC",
   "dependencies": {
     "config": "^3.3.7",
+    "dayjs": "^1.11.2",
     "express": "^4.18.1",
     "joi": "^17.6.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.21",
-    "mongoose": "^6.3.2"
+    "mongoose": "^6.3.2",
+    "pino": "^7.11.0"
   },
   "devDependencies": {
     "@types/config": "^0.0.41",
@@ -24,6 +26,8 @@
     "@types/jsonwebtoken": "^8.5.8",
     "@types/lodash": "^4.14.182",
     "@types/mongoose": "^5.11.97",
+    "@types/pino-pretty": "^4.7.5",
+    "pino-pretty": "^7.6.1",
     "ts-node": "^10.7.0",
     "typescript": "^4.6.4"
   }
