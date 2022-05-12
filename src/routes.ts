@@ -1,8 +1,9 @@
 import { Express, Request, Response } from 'express';
-import { createUserHandler } from './controller/user.controller';
 import { validateRequest } from "./middleware/validator";
+import { createUserHandler } from './controller/user.controller';
+import { createUserSessionHandler } from './controller/session.controller';
 
-export default (app: Express) => {
+export default (app: Express): void => {
   app.get('/healthcheck', (req: Request, res: Response) => {
     res.sendStatus(200);
   });
@@ -10,5 +11,10 @@ export default (app: Express) => {
   app.post('/api/users',
     validateRequest('createUser'),
     createUserHandler
+  );
+
+  app.post('/api/sessions',
+    validateRequest('createUserSession'),
+    createUserSessionHandler
   );
 }

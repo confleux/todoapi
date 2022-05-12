@@ -1,7 +1,8 @@
-import { DocumentDefinition } from 'mongoose';
-import User, { IUser } from "../model/user.model";
+import {HydratedDocument, LeanDocument} from 'mongoose';
+import User, {IUser, IUserMethods} from "../model/user.model";
+import {omit} from 'lodash';
 
-const createUser = async (input: DocumentDefinition<IUser>) => {
+const createUser = async (input: IUser): Promise<HydratedDocument<IUser> | undefined> => {
   try {
     return await User.create(input);
   } catch (e: unknown) {
@@ -11,4 +12,30 @@ const createUser = async (input: DocumentDefinition<IUser>) => {
   }
 }
 
-export { createUser };
+const validate = async (
+  {
+    email,
+    password
+  }: {
+    email: IUser["email"],
+    password: IUser["password"]
+  }
+): Promise<    Omit<IUser, 'password'>
+| LeanDocument<Omit<IUser, 'password'>> | boolean
+> => {
+  const user = await User.findOne({email});
+
+  if (!user) {
+    return false;
+  }
+
+  const isValid = await user.comparePassword(password);
+
+  if (!isValid) {
+    return false;
+  } else {
+    return omit(user.toObject(), 'password');
+  }
+}
+
+export { createUser, validate };

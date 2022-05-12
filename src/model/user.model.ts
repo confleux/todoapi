@@ -1,18 +1,20 @@
 import mongoose from 'mongoose';
+import { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
 import config from 'config';
 
 export interface IUser {
+  _id: Types.ObjectId,
   email: string,
   name: string,
   password: string
 }
 
-interface IUserMethods {
+export interface IUserMethods {
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
-type UserModel = mongoose.Model<IUser, {}, IUserMethods>;
+export type UserModel = mongoose.Model<IUser, {}, IUserMethods>;
 
 const UserSchema = new mongoose.Schema<IUser, UserModel, IUserMethods>(
   {
@@ -29,7 +31,7 @@ UserSchema.method('comparePassword', async function (candidatePassword: string):
     .catch((e) => false);
 });
 
-UserSchema.pre('save', async function() {
+UserSchema.pre('save', async function(): Promise<void> {
   if (this.isModified('password')) {
     const salt = await bcrypt.genSalt(config.get('saltWorkFactor'));
     const hash = bcrypt.hashSync(this.password, salt);

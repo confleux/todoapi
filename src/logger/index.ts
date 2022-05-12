@@ -1,8 +1,7 @@
-import pino from 'pino';
-import dayjs from 'dayjs';
+import pino, { Logger } from 'pino';
 import pretty from 'pino-pretty';
 
-const log = pino(
+const log: Logger<pretty.PrettyStream> = pino(
   pretty({
     colorize: true,
     translateTime: true
