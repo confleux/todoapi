@@ -16,14 +16,14 @@ const validateRequest = (schemaKey: string) => async (
   req: Request,
   res: Response,
   next: NextFunction
-): Promise<void> => {
+): Promise<void | Response> => {
   const validate = ajv.getSchema(schemaKey);
   if (!(validate) || validate(req.body)) {
     return next();
   } else {
     const errors = ajv.errorsText(validate.errors);
     log.error(errors);
-    res.status(400).send(errors);
+    return res.status(400).send(errors);
   }
 }
 

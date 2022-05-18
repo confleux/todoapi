@@ -3,6 +3,9 @@ import config from 'config';
 import log from './logger';
 import connect from './db/connect';
 import routes from './routes'
+import deserializeUser from "./middleware/deserializeUser";
+
+import { decode } from "./utils/jwt.utils";
 
 const app: Express = express();
 
@@ -11,6 +14,7 @@ const host = config.get("host") as string;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+app.use(deserializeUser);
 
 app.listen(port, host, async () => {
   await connect();

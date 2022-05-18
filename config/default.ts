@@ -1,7 +1,7 @@
 export default {
   port: 8000,
   host: "localhost",
-  dbUri: "mongodb://localhost:27017/todoapp",
+  dbUri: "mongodb://127.0.0.1:27017/todoapp",
   saltWorkFactor: 10,
   accessTokenTtl: "15m",
   refreshTokenTtl: "1y",

@@ -1,7 +1,8 @@
 import { Express, Request, Response } from 'express';
 import { validateRequest } from "./middleware/validator";
 import { createUserHandler } from './controller/user.controller';
-import { createUserSessionHandler } from './controller/session.controller';
+import { createUserSessionHandler, invalidateUserSessionHandler, getUserSessionsHandler } from './controller/session.controller';
+import requiresUser from './middleware/requiresUser';
 
 export default (app: Express): void => {
   app.get('/healthcheck', (req: Request, res: Response) => {
@@ -17,4 +18,8 @@ export default (app: Express): void => {
     validateRequest('createUserSession'),
     createUserSessionHandler
   );
+
+  app.get( '/api/sessions', getUserSessionsHandler);
+
+  app.delete('/api/sessions', requiresUser, invalidateUserSessionHandler);
 }

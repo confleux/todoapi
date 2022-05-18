@@ -3,7 +3,7 @@ import { Types } from 'mongoose';
 
 export interface ISession {
   _id: Types.ObjectId
-  user: Types.ObjectId,
+  userId: Types.ObjectId,
   valid: boolean,
   userAgent: string
 }

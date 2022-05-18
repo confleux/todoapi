@@ -1,6 +1,7 @@
-import {HydratedDocument, LeanDocument} from 'mongoose';
+import {HydratedDocument, LeanDocument, FilterQuery} from 'mongoose';
 import User, {IUser, IUserMethods} from "../model/user.model";
 import {omit} from 'lodash';
+import {query} from "express";
 
 const createUser = async (input: IUser): Promise<HydratedDocument<IUser> | undefined> => {
   try {
@@ -38,4 +39,8 @@ const validate = async (
   }
 }
 
-export { createUser, validate };
+const findUser = (query: FilterQuery<IUser>) => {
+  return User.findOne(query).lean();
+}
+
+export { createUser, validate, findUser };

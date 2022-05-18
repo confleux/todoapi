@@ -7,8 +7,18 @@ const sign = (obj: Object, opts?: jwt.SignOptions | undefined): string => {
   return jwt.sign(obj, privateKey, opts);
 }
 
-const decode = () => {
+const decode = (token: string): { valid: boolean, expired: boolean, decoded: string | jwt.JwtPayload | null} => {
+  try {
+    const decoded = jwt.verify(token, privateKey);
 
+    return { valid: true, expired: false, decoded }
+  } catch (e: any) {
+    return {
+      valid: false,
+      expired: e.message === "jwt expired",
+      decoded: null
+    }
+  }
 }
 
-export { sign };
+export { sign, decode };
