@@ -1,7 +1,6 @@
-import {HydratedDocument, LeanDocument, FilterQuery} from 'mongoose';
-import User, {IUser, IUserMethods} from '../model/user.model';
-import {omit} from 'lodash';
-import {query} from 'express';
+import {HydratedDocument, LeanDocument, FilterQuery} from "mongoose";
+import User, {IUser } from "../model/user.model";
+import {omit} from "lodash";
 
 const createUser = async (input: IUser): Promise<HydratedDocument<IUser> | undefined> => {
   try {
@@ -21,8 +20,8 @@ const validate = async (
     email: IUser["email"],
     password: IUser["password"]
   }
-): Promise<    Omit<IUser, 'password'>
-| LeanDocument<Omit<IUser, 'password'>> | boolean
+): Promise<    Omit<IUser, "password">
+| LeanDocument<Omit<IUser, "password">> | boolean
 > => {
   const user = await User.findOne({email});
 
@@ -35,7 +34,7 @@ const validate = async (
   if (!isValid) {
     return false;
   } else {
-    return omit(user.toObject(), 'password');
+    return omit(user.toObject(), "password");
   }
 }
 

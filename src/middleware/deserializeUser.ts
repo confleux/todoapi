@@ -1,6 +1,6 @@
-import { get } from 'lodash';
+import { get } from "lodash";
 import { Request, Response, NextFunction} from "express";
-import { decode } from '../utils/jwt.utils';
+import { decode } from "../utils/jwt.utils";
 import { reIssueAccessToken } from "../service/session.service";
 
 const deserializeUser = async (req: Request, res: Response, next: NextFunction): Promise<void> => {
@@ -25,7 +25,7 @@ const deserializeUser = async (req: Request, res: Response, next: NextFunction):
   if (expired && refreshToken) {
     const newAccessToken = await reIssueAccessToken(refreshToken);
 
-    if (typeof newAccessToken === 'string') {
+    if (typeof newAccessToken === "string") {
       res.setHeader("x-access-token", newAccessToken);
 
       const { decoded } = decode(newAccessToken);

@@ -1,12 +1,12 @@
-import Ajv from 'ajv';
-import addFormats from 'ajv-formats';
-import { Request, Response, NextFunction } from 'express';
+import Ajv from "ajv";
+import addFormats from "ajv-formats";
+import { Request, Response, NextFunction } from "express";
 import log from "../logger";
 
-import * as createUserSchema from '../validationSchemes/createUser.schema.json';
-import * as createUserSessionSchema from '../validationSchemes/createUserSession.schema.json';
-import * as createTask from '../validationSchemes/createTask.schema.json';
-import * as updateTask from '../validationSchemes/updateTask.schema.json';
+import * as createUserSchema from "../validationSchemes/createUser.schema.json";
+import * as createUserSessionSchema from "../validationSchemes/createUserSession.schema.json";
+import * as createTask from "../validationSchemes/createTask.schema.json";
+import * as updateTask from "../validationSchemes/updateTask.schema.json";
 
 export const ajv: Ajv = new Ajv();
 addFormats(ajv);

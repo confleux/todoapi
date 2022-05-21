@@ -1,8 +1,8 @@
-import express, { Express } from 'express';
-import config from 'config';
-import log from './logger';
-import connect from './db/connect';
-import routes from './routes'
+import express, { Express } from "express";
+import config from "config";
+import log from "./logger";
+import connect from "./db/connect";
+import routes from "./routes"
 import deserializeUser from "./middleware/deserializeUser";
 
 const app: Express = express();

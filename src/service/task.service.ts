@@ -1,5 +1,5 @@
 import { HydratedDocument, FilterQuery, UpdateQuery, QueryOptions } from "mongoose";
-import Task, { ITask} from '../model/task.model';
+import Task, { ITask} from "../model/task.model";
 
 const createTask = async (input: ITask): Promise<HydratedDocument<ITask> | undefined> => {
   try {

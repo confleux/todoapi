@@ -1,8 +1,8 @@
 import { Types} from "mongoose";
 import { createTask, findTask, deleteTask, updateTask } from "../service/task.service";
 import { Request, Response } from "express";
-import log from '../logger/index';
-import { get, assign } from 'lodash';
+import log from "../logger/index";
+import { get } from "lodash";
 
 const createTaskHandler = async (req: Request, res: Response): Promise<void | Response> => {
   try {

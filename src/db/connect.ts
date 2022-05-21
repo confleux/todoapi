@@ -1,6 +1,6 @@
-import mongoose from 'mongoose';
-import config from 'config';
-import log from '../logger';
+import mongoose from "mongoose";
+import config from "config";
+import log from "../logger";
 
 const connect = async (): Promise<void> => {
   try {

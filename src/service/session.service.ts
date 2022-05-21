@@ -1,7 +1,7 @@
 import {FilterQuery, LeanDocument, Types, UpdateQuery } from "mongoose";
 import { IUser } from "../model/user.model";
 import Session, {ISession} from "../model/session.model";
-import { get, omit } from 'lodash';
+import { get, omit } from "lodash";
 import { sign, decode } from "../utils/jwt.utils";
 import config from "config";
 import { findUser } from "./user.service";
@@ -17,11 +17,11 @@ const createAccessToken = ({
   session
 }: {
   user: 
-    | Omit<IUser, 'password'>
-    | LeanDocument<Omit<IUser, 'password'>>;
+    | Omit<IUser, "password">
+    | LeanDocument<Omit<IUser, "password">>;
   session:
-    | Omit<ISession, 'password'>
-    | LeanDocument<Omit<ISession, 'password'>>
+    | Omit<ISession, "password">
+    | LeanDocument<Omit<ISession, "password">>
    }
 ): string => {
   const accessToken = sign(
