@@ -2,6 +2,7 @@ import { Express, Request, Response } from 'express';
 import { validateRequest } from "./middleware/validator";
 import { createUserHandler } from './controller/user.controller';
 import { createUserSessionHandler, invalidateUserSessionHandler, getUserSessionsHandler } from './controller/session.controller';
+import { createTaskHandler } from "./controller/task.controller";
 import requiresUser from './middleware/requiresUser';
 
 export default (app: Express): void => {
@@ -22,4 +23,6 @@ export default (app: Express): void => {
   app.get( '/api/sessions', getUserSessionsHandler);
 
   app.delete('/api/sessions', requiresUser, invalidateUserSessionHandler);
+
+  app.post('/api/tasks', requiresUser, validateRequest('createTask'), createTaskHandler);
 }

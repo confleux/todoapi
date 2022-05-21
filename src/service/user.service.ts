@@ -1,7 +1,7 @@
 import {HydratedDocument, LeanDocument, FilterQuery} from 'mongoose';
-import User, {IUser, IUserMethods} from "../model/user.model";
+import User, {IUser, IUserMethods} from '../model/user.model';
 import {omit} from 'lodash';
-import {query} from "express";
+import {query} from 'express';
 
 const createUser = async (input: IUser): Promise<HydratedDocument<IUser> | undefined> => {
   try {

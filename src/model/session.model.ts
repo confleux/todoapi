@@ -1,16 +1,15 @@
 import mongoose from 'mongoose';
-import { Types } from 'mongoose';
 
 export interface ISession {
-  _id: Types.ObjectId
-  userId: Types.ObjectId,
+  _id: mongoose.Types.ObjectId,
+  userId: mongoose.Types.ObjectId,
   valid: boolean,
   userAgent: string
 }
 
-const SessionSchema: mongoose.Schema = new mongoose.Schema(
+const SessionSchema: mongoose.Schema = new mongoose.Schema<ISession>(
   {
-    userId: { type: Types.ObjectId, ref: "User" },
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: "User" },
     valid: { type: Boolean, default: true },
     userAgent: { type: String }
   },

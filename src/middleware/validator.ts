@@ -5,12 +5,14 @@ import log from "../logger";
 
 import * as createUserSchema from '../validationSchemes/createUser.schema.json';
 import * as createUserSessionSchema from '../validationSchemes/createUserSession.schema.json';
+import * as createTask from '../validationSchemes/createTask.schema.json';
 
 export const ajv: Ajv = new Ajv();
 addFormats(ajv);
 
 ajv.addSchema(createUserSchema, "createUser");
 ajv.addSchema(createUserSessionSchema, "createUserSession");
+ajv.addSchema(createTask, "createTask");
 
 const validateRequest = (schemaKey: string) => async (
   req: Request,

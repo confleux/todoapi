@@ -9,7 +9,7 @@ const deserializeUser = async (req: Request, res: Response, next: NextFunction):
     ""
   );
 
-  const refreshToken = get(req, "headers.x-refresh");
+  const refreshToken = get(req, "headers.x-refresh-token");
 
   if (!accessToken) {
     return next();

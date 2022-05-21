@@ -1,10 +1,9 @@
 import mongoose from 'mongoose';
-import { Types } from 'mongoose';
 import bcrypt from 'bcrypt';
 import config from 'config';
 
 export interface IUser {
-  _id: Types.ObjectId,
+  _id: mongoose.Types.ObjectId,
   email: string,
   name: string,
   password: string
