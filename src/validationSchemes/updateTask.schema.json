@@ -1,0 +1,12 @@
+{
+  "type": "object",
+  "properties": {
+    "text": {
+      "type": "string"
+    },
+    "project": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}

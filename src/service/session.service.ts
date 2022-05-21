@@ -1,7 +1,7 @@
 import {FilterQuery, LeanDocument, Types, UpdateQuery } from "mongoose";
 import { IUser } from "../model/user.model";
 import Session, {ISession} from "../model/session.model";
-import { get } from 'lodash';
+import { get, omit } from 'lodash';
 import { sign, decode } from "../utils/jwt.utils";
 import config from "config";
 import { findUser } from "./user.service";
@@ -25,7 +25,7 @@ const createAccessToken = ({
    }
 ): string => {
   const accessToken = sign(
-    { ...user, session: session._id },
+    { ...omit(user, "password"), session: session._id },
     { expiresIn: config.get("accessTokenTtl") }
   );
   return accessToken;

@@ -6,6 +6,7 @@ import log from "../logger";
 import * as createUserSchema from '../validationSchemes/createUser.schema.json';
 import * as createUserSessionSchema from '../validationSchemes/createUserSession.schema.json';
 import * as createTask from '../validationSchemes/createTask.schema.json';
+import * as updateTask from '../validationSchemes/updateTask.schema.json';
 
 export const ajv: Ajv = new Ajv();
 addFormats(ajv);
@@ -13,6 +14,7 @@ addFormats(ajv);
 ajv.addSchema(createUserSchema, "createUser");
 ajv.addSchema(createUserSessionSchema, "createUserSession");
 ajv.addSchema(createTask, "createTask");
+ajv.addSchema(updateTask, "updateTask");
 
 const validateRequest = (schemaKey: string) => async (
   req: Request,
